@@ -1,0 +1,187 @@
+﻿<Window x:Class="Supermarkets.MainWindow"       
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"        
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:lvc= "clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
+        xmlns:local="clr-namespace:Supermarkets"      
+        mc:Ignorable="d"      
+        Title="Supermarkets" Height="730" Width="1672">
+
+    <Grid>
+        <StackPanel x:Name="SettingsWindow" Visibility="Visible">
+            <Grid >
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Выберите группу супермаркетов:" FontSize="15"/>
+                    <ComboBox  BorderBrush="Gray" BorderThickness="1"  HorizontalAlignment="Left" VerticalAlignment="Top" Width="177" Foreground="Black" Height="35"  StaysOpenOnEdit="True" IsEditable="True" FontSize="15" SelectedIndex="{Binding SelectMarket}">
+                        <ComboBoxItem Content="Супермаркеты 1-3"/>
+                        <ComboBoxItem Content="Супермаркеты 4-7"/>
+                        <ComboBoxItem Content="Супермаркеты 8-12"/>
+                    </ComboBox>
+                    <Grid Background="#FF2B75E0">
+                        <Button FontSize="15" Width="100" Height="30" HorizontalAlignment="Left" Content="Сброс" Command="{Binding Reset}" Background="{x:Null}" Foreground="White" BorderBrush="{x:Null}"></Button>
+                    </Grid>
+                </StackPanel>
+            </Grid>
+            <StackPanel Orientation="Horizontal" Margin="0,10,0,10">
+                <Label Content="Укажите время моделирования:" FontSize="15" />
+                <TextBox HorizontalContentAlignment="Center" HorizontalAlignment="Left" Height="30"  Text="{Binding ModelingTime, Mode=TwoWay}" Width="50" FontSize="15">
+                    <TextBox.ToolTip>
+                        Введите время моделирования в днях 
+                    </TextBox.ToolTip>
+                </TextBox>
+            </StackPanel>
+            <Grid >
+                <Label Content="Потребительская корзина:" FontSize="15" />
+            </Grid>
+            <Grid >
+                <StackPanel Orientation="Horizontal">
+                    <Label  HorizontalContentAlignment="Center" HorizontalAlignment="Left" Height="30"  Content="A" Width="50" FontSize="15"/>
+                    <Label  HorizontalContentAlignment="Center" HorizontalAlignment="Left" Height="30"  Content="B" Width="50" FontSize="15"/>
+                    <Label  HorizontalContentAlignment="Center" HorizontalAlignment="Left" Height="30"  Content="C" Width="50" FontSize="15"/>
+                    <Label  HorizontalContentAlignment="Center" HorizontalAlignment="Left" Height="30"  Content="D" Width="50" FontSize="15"/>
+                    <Label  HorizontalContentAlignment="Center" HorizontalAlignment="Left" Height="30"  Content="E" Width="50" FontSize="15"/>
+                    <Label  HorizontalContentAlignment="Center" HorizontalAlignment="Left" Height="30"  Content="F" Width="50" FontSize="15"/>
+                    <Label  HorizontalContentAlignment="Center" HorizontalAlignment="Left" Height="30"  Content="G" Width="50" FontSize="15"/>
+                </StackPanel>
+            </Grid>
+            <StackPanel Orientation="Horizontal">
+            <Grid>
+                    <Grid.ToolTip>
+                        Введите число
+                    </Grid.ToolTip>
+                <StackPanel  x:Name="CartOutput" Orientation="Horizontal"  DataContext="{Binding ShoppingСart,Mode=TwoWay}" >
+                    <TextBox x:Name="ACart" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Height="30"  Text="{Binding [0]}" Width="50" FontSize="15"/>
+                    <TextBox x:Name="BCart" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Height="30"  Text="{Binding [1]}" Width="50" FontSize="15"/>
+                    <TextBox x:Name="CCart" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Height="30"  Text="{Binding [2]}" Width="50" FontSize="15"/>
+                    <TextBox x:Name="DCart" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Height="30"  Text="{Binding [3]}" Width="50" FontSize="15"/>
+                    <TextBox x:Name="ECart" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Height="30"  Text="{Binding [4]}" Width="50" FontSize="15"/>
+                    <TextBox x:Name="FCart" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Height="30"  Text="{Binding [5]}" Width="50" FontSize="15"/>
+                    <TextBox x:Name="GCart" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Height="30"  Text="{Binding [6]}" Width="50" FontSize="15"/>
+
+                </StackPanel>
+            </Grid>
+            </StackPanel>
+            <Grid >
+                <Label Content="Интенсивность поставок:" FontSize="15" />
+            </Grid>
+            <Grid >
+                <StackPanel Orientation="Horizontal">
+                    <Label  HorizontalContentAlignment="Center" HorizontalAlignment="Left" Height="30"  Content="A" Width="50" FontSize="15"/>
+                    <Label  HorizontalContentAlignment="Center" HorizontalAlignment="Left" Height="30"  Content="B" Width="50" FontSize="15"/>
+                    <Label  HorizontalContentAlignment="Center" HorizontalAlignment="Left" Height="30"  Content="C" Width="50" FontSize="15"/>
+                    <Label  HorizontalContentAlignment="Center" HorizontalAlignment="Left" Height="30"  Content="D" Width="50" FontSize="15"/>
+                    <Label  HorizontalContentAlignment="Center" HorizontalAlignment="Left" Height="30"  Content="E" Width="50" FontSize="15"/>
+                    <Label  HorizontalContentAlignment="Center" HorizontalAlignment="Left" Height="30"  Content="F" Width="50" FontSize="15"/>
+                    <Label  HorizontalContentAlignment="Center" HorizontalAlignment="Left" Height="30"  Content="G" Width="50" FontSize="15"/>
+                </StackPanel>
+            </Grid>
+            <StackPanel Orientation="Horizontal">
+            <Grid>
+                <Grid.ToolTip>
+                    Введите целое число
+                </Grid.ToolTip>
+                <StackPanel  DataContext="{Binding SupplyIntervals,Mode=TwoWay}" Orientation="Horizontal">
+                    <TextBox  HorizontalContentAlignment="Center" HorizontalAlignment="Left" Height="30"  Text="{Binding [0]}" Width="50" FontSize="15"/>
+                    <TextBox  HorizontalContentAlignment="Center" HorizontalAlignment="Left" Height="30"  Text="{Binding [1]}" Width="50" FontSize="15"/>
+                    <TextBox  HorizontalContentAlignment="Center" HorizontalAlignment="Left" Height="30"  Text="{Binding [2]}" Width="50" FontSize="15"/>
+                    <TextBox  HorizontalContentAlignment="Center" HorizontalAlignment="Left" Height="30"  Text="{Binding [3]}" Width="50" FontSize="15"/>
+                    <TextBox  HorizontalContentAlignment="Center" HorizontalAlignment="Left" Height="30"  Text="{Binding [4]}" Width="50" FontSize="15"/>
+                    <TextBox  HorizontalContentAlignment="Center" HorizontalAlignment="Left" Height="30"  Text="{Binding [5]}" Width="50" FontSize="15"/>
+                    <TextBox  HorizontalContentAlignment="Center" HorizontalAlignment="Left" Height="30"  Text="{Binding [6]}" Width="50" FontSize="15"/>
+                </StackPanel>
+            </Grid>
+            </StackPanel>
+            <Grid >
+                <Label Content="Объём поставок (int):" FontSize="15" />
+            </Grid>
+            <Grid >
+                <StackPanel Orientation="Horizontal">
+                    <Label  HorizontalContentAlignment="Center" HorizontalAlignment="Left" Height="30"  Content="A" Width="50" FontSize="15"/>
+                    <Label  HorizontalContentAlignment="Center" HorizontalAlignment="Left" Height="30"  Content="B" Width="50" FontSize="15"/>
+                    <Label  HorizontalContentAlignment="Center" HorizontalAlignment="Left" Height="30"  Content="C" Width="50" FontSize="15"/>
+                    <Label  HorizontalContentAlignment="Center" HorizontalAlignment="Left" Height="30"  Content="D" Width="50" FontSize="15"/>
+                    <Label  HorizontalContentAlignment="Center" HorizontalAlignment="Left" Height="30"  Content="E" Width="50" FontSize="15"/>
+                    <Label  HorizontalContentAlignment="Center" HorizontalAlignment="Left" Height="30"  Content="F" Width="50" FontSize="15"/>
+                    <Label  HorizontalContentAlignment="Center" HorizontalAlignment="Left" Height="30"  Content="G" Width="50" FontSize="15"/>
+                </StackPanel>
+            </Grid>
+            <StackPanel Orientation="Horizontal">
+            <Grid >
+                    <Grid.ToolTip>
+                        Введите целое число
+                    </Grid.ToolTip>
+                <StackPanel   Orientation="Horizontal" DataContext="{Binding ProductsSupplies,Mode=TwoWay}" >
+                    <TextBox x:Name="ASupplyCount" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Height="30"  Text="{Binding [0]}" Width="50" FontSize="15"/>
+                    <TextBox x:Name="BSupplyCount" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Height="30"  Text="{Binding [1]}" Width="50" FontSize="15"/>
+                    <TextBox x:Name="CSupplyCount" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Height="30"  Text="{Binding [2]}" Width="50" FontSize="15"/>
+                    <TextBox x:Name="DSupplyCount" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Height="30"  Text="{Binding [3]}" Width="50" FontSize="15"/>
+                    <TextBox x:Name="ESupplyCount" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Height="30"  Text="{Binding [4]}" Width="50" FontSize="15"/>
+                    <TextBox x:Name="FSupplyCount" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Height="30"  Text="{Binding [5]}" Width="50" FontSize="15"/>
+                    <TextBox x:Name="GSupplyCount" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Height="30"  Text="{Binding [6]}" Width="50" FontSize="15"/>
+                </StackPanel>
+            </Grid>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal">
+            <Grid Margin="0,10,0,0" Background="#FF2B75E0" Width="Auto">
+                    <Button x:Name="Modeling" FontSize="15" Width="Auto" Height="30" HorizontalAlignment="Left" Click="Modeling_Click" Background="{x:Null}" Command="{Binding UpdateSupply}" Foreground="White" BorderBrush="{x:Null}">Начать моделирование</Button>
+            </Grid>
+            </StackPanel>
+        </StackPanel>
+        <Grid x:Name="ModelWindow" Visibility="Collapsed" >
+        <StackPanel >
+            <Grid >
+                <Label  HorizontalContentAlignment="Center" HorizontalAlignment="Left" Height="40"  Content="Состояние группы магазинов на данное время:"  FontSize="20"/>
+            </Grid>
+            <DataGrid ItemsSource="{Binding Markets}"  Height="190" FontSize="15"></DataGrid>
+            <lvc:CartesianChart Series="{Binding Chart}"  LegendLocation="Right" Height="384" >
+                <lvc:CartesianChart.AxisY>
+                    <lvc:Axis Title="Количество на складе" Labels="{Binding Chart}" ></lvc:Axis>
+                </lvc:CartesianChart.AxisY>
+                <lvc:CartesianChart.AxisX>
+                    <lvc:Axis Title="День/Час" Labels="{Binding Labels}" ></lvc:Axis>
+                </lvc:CartesianChart.AxisX>
+            </lvc:CartesianChart>
+
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom">
+            <Grid  Background="#FF2B75E0">
+                <materialDesign:PackIcon x:Name="PlayPause"  Foreground="WhiteSmoke" Kind="Play" Width="50" Height="50" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                <Button x:Name="StartModeling"  Width="50" Height="50" HorizontalAlignment="Left" Background="{x:Null}" BorderBrush="White" Command="{Binding StartPause}" Click="StartModeling_Click"/>
+            </Grid>
+            <Grid  Background="#FF2B75E0">
+                <materialDesign:PackIcon Foreground="WhiteSmoke" Kind="PlayPause" Width="50" Height="50" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                <Button   FontSize="15" Background="{x:Null}" BorderBrush="White" Width="50" Height="50" HorizontalAlignment="Left" Command="{Binding Step}"  />
+            </Grid>
+            <Grid  Background="#FF2B75E0">
+                <materialDesign:PackIcon Foreground="WhiteSmoke" Kind="Stop" Width="50" Height="50" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                <Button x:Name="StopModeling" Background="{x:Null}" BorderBrush="White" FontSize="15" Width="50" Height="50" HorizontalAlignment="Left" Command="{Binding Stop}" Click="StopModeling_Click" />
+            </Grid>
+            <TextBox  HorizontalAlignment="Left" Height="50"  Text="{Binding CurrentTime, Mode=OneWay}" Width="100" FontSize="22"/>
+            <TextBox  HorizontalAlignment="Left" Height="50"  Text="{Binding CurrentDay, Mode=OneWay}"  Width="100" FontSize="22"/>
+            <Label FontSize="22" BorderBrush="Gray" BorderThickness="1" Content="Область видимости графика:"/>
+            <ComboBox  BorderBrush="Gray" BorderThickness="1"  HorizontalAlignment="Left" VerticalAlignment="Top" Width="60" Foreground="Black" Height="50"  StaysOpenOnEdit="True" IsEditable="True" FontSize="22" SelectedIndex="{Binding SelectChartDetail}">
+                <ComboBoxItem Content="10"/>
+                <ComboBoxItem Content="15"/>
+                <ComboBoxItem Content="20"/>
+                <ComboBoxItem Content="25"/>
+                <ComboBoxItem Content="30"/>
+            </ComboBox>
+            <StackPanel x:Name="SpeedsButtons" Orientation="Horizontal" Visibility="Collapsed">
+                <Label FontSize="22" BorderBrush="Gray" BorderThickness="1" Content="Скорость моделирования:"/>
+                    <ComboBox x:Name="SpeedBox"   BorderBrush="Gray" BorderThickness="1"  HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" Foreground="Black" Height="50"  StaysOpenOnEdit="True" IsEditable="True" FontSize="22" SelectedIndex="{Binding SelectSpeed}">
+                    <ComboBoxItem Content="X1"/>
+                    <ComboBoxItem Content="X2"/>
+                    <ComboBoxItem Content="X5"/>
+                    <ComboBoxItem Content="X10"/>
+                    <ComboBoxItem Content="X50"/>
+                    <ComboBoxItem Content="Virtual"/>
+                </ComboBox>
+
+            </StackPanel>
+        </StackPanel>
+        </Grid>
+    </Grid>
+</Window>
