@@ -34,3 +34,7 @@
 <li>	график и объем поставок каждого вида товаров по сети;</li>
 <li>	рекомендуемое количество касс в каждом магазине.</li>
 </ol>
+<p>
+<p>
+<p>
+<p>Ссылка на приложение: https://drive.google.com/file/d/148_LIRqs1U_NM6lfUP2sMCnJeIqivezv/view?usp=sharing<\p>
